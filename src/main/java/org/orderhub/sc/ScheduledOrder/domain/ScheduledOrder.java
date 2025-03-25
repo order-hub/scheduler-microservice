@@ -53,4 +53,8 @@ public class ScheduledOrder {
         this.orderCreatedAt = orderCreatedAt;
         this.items = items;
     }
+
+    public void markAsProcessed() {
+        this.processStatus = ProcessStatus.PROCESSING;
+    }
 }
