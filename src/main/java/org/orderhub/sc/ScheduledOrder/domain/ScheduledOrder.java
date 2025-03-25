@@ -1,0 +1,45 @@
+package org.orderhub.sc.ScheduledOrder.domain;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import org.orderhub.sc.ScheduledOrder.util.OrderStatusConverter;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Getter
+@Table(name = "scheduled_orders")
+public class ScheduledOrder {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private Long originalOrderId;
+
+    @Column(nullable = false)
+    private Long storeId;
+
+    @Convert(converter = OrderStatusConverter.class)
+    private OrderStatus status;
+
+    @Column(nullable = false)
+    private Instant orderCreatedAt;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "scheduled_order_id")
+    private List<ScheduledOrderItem> items = new ArrayList<>();
+
+    @Column(nullable = false)
+    private Instant scheduledAt = Instant.now();
+
+    @Column
+    private Instant processedAt;
+
+    @Enumerated(EnumType.STRING)
+    private ProcessStatus processStatus = ProcessStatus.PENDING;
+
+}
