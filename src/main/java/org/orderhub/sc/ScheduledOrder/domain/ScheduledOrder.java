@@ -1,7 +1,9 @@
 package org.orderhub.sc.ScheduledOrder.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.orderhub.sc.ScheduledOrder.util.OrderStatusConverter;
 
 import java.time.Instant;
@@ -11,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "scheduled_orders")
+@NoArgsConstructor
 public class ScheduledOrder {
 
     @Id
@@ -42,4 +45,12 @@ public class ScheduledOrder {
     @Enumerated(EnumType.STRING)
     private ProcessStatus processStatus = ProcessStatus.PENDING;
 
+    @Builder
+    public ScheduledOrder(Long originalOrderId, Long storeId, OrderStatus status, Instant orderCreatedAt, List<ScheduledOrderItem> items) {
+        this.originalOrderId = originalOrderId;
+        this.storeId = storeId;
+        this.status = status;
+        this.orderCreatedAt = orderCreatedAt;
+        this.items = items;
+    }
 }
