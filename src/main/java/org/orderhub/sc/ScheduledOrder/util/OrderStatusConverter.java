@@ -1,6 +1,8 @@
 package org.orderhub.sc.ScheduledOrder.util;
 
+import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import org.orderhub.sc.ScheduledOrder.domain.OrderStatus;
 
 @Converter
 public class OrderStatusConverter implements AttributeConverter<OrderStatus, String> {
