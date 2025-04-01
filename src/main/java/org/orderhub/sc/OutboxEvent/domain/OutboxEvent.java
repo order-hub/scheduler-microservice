@@ -2,8 +2,10 @@ package org.orderhub.sc.OutboxEvent.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.orderhub.sc.OutboxEvent.dto.request.OutBoxEventCreateRequest;
 
 import java.time.Instant;
 
@@ -34,11 +36,37 @@ public class OutboxEvent {
 
     private Instant publishedAt;
 
+    @Builder
+    public OutboxEvent(AggregateType aggregateType, String aggregateId, EventType eventType, String payload, EventStatus status, Instant publishedAt) {
+        this.aggregateType = aggregateType;
+        this.aggregateId = aggregateId;
+        this.eventType = eventType;
+        this.payload = payload;
+        this.status = status;
+        this.publishedAt = publishedAt;
+    }
+
     @PrePersist
     public void prePersist() {
         if (createdAt == null) {
             createdAt = Instant.now();
         }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = Instant.now();
+    }
+
+    public static OutboxEvent from(OutBoxEventCreateRequest outboxEvent) {
+        return OutboxEvent.builder()
+                .aggregateType(outboxEvent.getAggregateType())
+                .aggregateId(outboxEvent.getAggregateId())
+                .eventType(outboxEvent.getEventType())
+                .payload(outboxEvent.getPayload())
+                .status(outboxEvent.getStatus())
+                .publishedAt(outboxEvent.getPublishedAt())
+                .build();
     }
 
 }
