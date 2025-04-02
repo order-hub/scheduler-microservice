@@ -1,6 +1,6 @@
-package org.orderhub.sc.OutboxEvent.respository;
+package org.orderhub.sc.outboxevent.respository;
 
-import org.orderhub.sc.OutboxEvent.domain.OutboxEvent;
+import org.orderhub.sc.outboxevent.domain.OutboxEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OutBoxEventRepository extends JpaRepository<OutboxEvent, Long> {

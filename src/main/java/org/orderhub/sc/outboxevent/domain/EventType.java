@@ -1,4 +1,4 @@
-package org.orderhub.sc.OutboxEvent.domain;
+package org.orderhub.sc.outboxevent.domain;
 
 public enum EventType {
     ORDER_SCHEDULED,

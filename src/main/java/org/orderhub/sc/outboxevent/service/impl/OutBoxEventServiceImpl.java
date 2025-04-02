@@ -1,10 +1,10 @@
-package org.orderhub.sc.OutboxEvent.service.impl;
+package org.orderhub.sc.outboxevent.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.orderhub.sc.OutboxEvent.domain.OutboxEvent;
-import org.orderhub.sc.OutboxEvent.dto.request.OutBoxEventCreateRequest;
-import org.orderhub.sc.OutboxEvent.respository.OutBoxEventRepository;
-import org.orderhub.sc.OutboxEvent.service.OutboxEventService;
+import org.orderhub.sc.outboxevent.domain.OutboxEvent;
+import org.orderhub.sc.outboxevent.dto.request.OutBoxEventCreateRequest;
+import org.orderhub.sc.outboxevent.respository.OutBoxEventRepository;
+import org.orderhub.sc.outboxevent.service.OutboxEventService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

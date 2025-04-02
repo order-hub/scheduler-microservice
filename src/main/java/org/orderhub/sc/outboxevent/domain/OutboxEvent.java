@@ -1,11 +1,11 @@
-package org.orderhub.sc.OutboxEvent.domain;
+package org.orderhub.sc.outboxevent.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.orderhub.sc.OutboxEvent.dto.request.OutBoxEventCreateRequest;
+import org.orderhub.sc.outboxevent.dto.request.OutBoxEventCreateRequest;
 
 import java.time.Instant;
 

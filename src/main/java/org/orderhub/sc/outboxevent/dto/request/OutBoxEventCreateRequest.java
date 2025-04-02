@@ -1,12 +1,12 @@
-package org.orderhub.sc.OutboxEvent.dto.request;
+package org.orderhub.sc.outboxevent.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.orderhub.sc.OutboxEvent.domain.AggregateType;
-import org.orderhub.sc.OutboxEvent.domain.EventStatus;
-import org.orderhub.sc.OutboxEvent.domain.EventType;
+import org.orderhub.sc.outboxevent.domain.AggregateType;
+import org.orderhub.sc.outboxevent.domain.EventStatus;
+import org.orderhub.sc.outboxevent.domain.EventType;
 
 import java.time.Instant;
 

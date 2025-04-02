@@ -1,6 +1,6 @@
 package org.orderhub.sc.ScheduledOrder.util;
 
-import org.orderhub.sc.OutboxEvent.domain.EventType;
+import org.orderhub.sc.outboxevent.domain.EventType;
 
 import java.util.UUID;
 
