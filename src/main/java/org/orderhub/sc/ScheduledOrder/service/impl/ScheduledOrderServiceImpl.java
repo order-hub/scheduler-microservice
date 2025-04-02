@@ -35,4 +35,14 @@ public class ScheduledOrderServiceImpl implements ScheduledOrderService {
                 .build();
         scheduledOrderRepository.save(order);
     }
+
+    @Transactional
+    public void update(OrderEventRequest request) {
+        ScheduledOrder scheduledOrder = findById(request.getOrderId());
+        scheduledOrder.update(request);
+    }
+
+    private ScheduledOrder findById(long id) {
+        return scheduledOrderRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Order not found"));
+    }
 }

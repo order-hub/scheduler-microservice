@@ -4,4 +4,5 @@ import org.orderhub.sc.ScheduledOrder.service.listener.OrderEventRequest;
 
 public interface ScheduledOrderService {
     void save(OrderEventRequest request);
+    void update(OrderEventRequest request);
 }

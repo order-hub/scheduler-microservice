@@ -19,10 +19,16 @@ public class OrderEventListener {
 
     private final ScheduledOrderService scheduledOrderService;
 
-    @Transactional
     @KafkaListener(topics = "order-created", groupId = "scheduled-order-group", containerFactory = "kafkaListenerContainerFactory")
     public void listen(OrderEventRequest request) {
         log.info("Received order event: {}", request);
         scheduledOrderService.save(request);
     }
+
+    @KafkaListener(topics = "order-updated", groupId = "scheduled-order-group", containerFactory = "kafkaListenerContainerFactory")
+    public void updateListen(OrderEventRequest request) {
+        log.info("Received update order event: {}", request);
+        scheduledOrderService.update(request);
+    }
+
 }
