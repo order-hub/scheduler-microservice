@@ -2,6 +2,7 @@ package org.orderhub.sc.scheduledorder.batch;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.orderhub.sc.scheduledorder.domain.OrderStatus;
 import org.orderhub.sc.scheduledorder.domain.ProcessStatus;
 import org.orderhub.sc.scheduledorder.domain.ScheduledOrder;
 import org.springframework.batch.item.ItemReader;
@@ -25,10 +26,15 @@ public class ScheduledOrderItemReader implements ItemReader<ScheduledOrder> {
             Instant yesterday = today.minus(1, ChronoUnit.DAYS);
 
             orders = new LinkedList<>(
-                    em.createQuery("SELECT o FROM ScheduledOrder o WHERE o.scheduledAt BETWEEN :start AND :end AND o.processStatus = :status", ScheduledOrder.class)
+                    em.createQuery(
+                                    "SELECT o FROM ScheduledOrder o " +
+                                            "WHERE o.scheduledAt BETWEEN :start AND :end " +
+                                            "AND o.processStatus = :processStatus " +
+                                            "AND o.status != :cancelledStatus", ScheduledOrder.class)
                             .setParameter("start", yesterday.truncatedTo(ChronoUnit.DAYS))
                             .setParameter("end", today.truncatedTo(ChronoUnit.DAYS))
-                            .setParameter("status", ProcessStatus.PENDING)
+                            .setParameter("processStatus", ProcessStatus.PENDING)
+                            .setParameter("cancelledStatus", OrderStatus.CANCELLED)
                             .getResultList()
             );
         }
