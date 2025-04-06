@@ -20,5 +20,5 @@ public class OutBoxEventCreateRequest {
     private EventType eventType;
     private String payload;
     private EventStatus status;
-    private Instant publishedAt = Instant.now();
+    private Instant publishedAt;
 }

@@ -19,10 +19,10 @@ import static org.mockito.Mockito.verify;
 class OrderEventListenerTest {
 
     @Mock
-    private ScheduledOrderService scheduledOrderService;
+    ScheduledOrderService scheduledOrderService;
 
     @InjectMocks
-    private OrderEventListener orderEventListener;
+    OrderEventListener orderEventListener;
 
     @Test
     void shouldMapAllFieldsCorrectly() {
