@@ -59,4 +59,29 @@ class OrderEventListenerTest {
         verify(scheduledOrderService, times(1)).save(request);
     }
 
+    @Test
+    void shouldCallUpdateWhenUpdateEventReceived() {
+        // Given
+        OrderEventRequest request = OrderEventRequest.builder()
+                .orderId(12345L)
+                .storeId(67890L)
+                .memberId(9999L)
+                .status(OrderStatus.PROCESSING)
+                .createdAt(Instant.parse("2024-01-01T00:00:00Z"))
+                .items(List.of(
+                        OrderItemResponse.builder()
+                                .productId(1L)
+                                .productName("갤럭시 탭")
+                                .price(800_000)
+                                .quantity(1)
+                                .build()
+                ))
+                .build();
+
+        // When
+        orderEventListener.updateListen(request);
+
+        // Then
+        verify(scheduledOrderService, times(1)).update(request);
+    }
 }
