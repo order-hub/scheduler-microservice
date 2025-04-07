@@ -52,7 +52,7 @@ public class ScheduledOrder {
         this.storeId = storeId;
         this.status = status;
         this.orderCreatedAt = orderCreatedAt;
-        this.items = items;
+        this.items = new ArrayList<>(items);
     }
 
     public void markAsProcessed() {
